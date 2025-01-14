@@ -53,7 +53,7 @@
       text-align: center;
       font-weight: bold;
       margin-top: 20px;
-      color: white;
+      color: blue;
     }
   </style>
 </head>
@@ -121,7 +121,7 @@
 
     <div id="results" class="table-result" style="display: none;">
       <h3>Results</h3>
-      <table class="table table-bordered result-table">
+      <table class="table table-bordered result-table" id="resultTableHeader">
         <thead>
           <tr>
             <th>Component</th>
@@ -144,6 +144,7 @@
 
     <footer>
       This Software Made By Saroj Dhungana
+      phone:-9846758020
     </footer>
   </div>
 
@@ -308,25 +309,60 @@
                     <td>${size}</td>
                   </tr>`;
       resultTable.innerHTML += row;
-
-      // Add result to the array for download or print
-      results.push(`${component}: ${size}`);
     }
 
     function downloadResults() {
-      const blob = new Blob([results.join("\n")], { type: "text/plain" });
+      const resultTable = document.getElementById("resultTable");
+      const tableHTML = resultTable.outerHTML;
+      const tableHeader = document.getElementById("resultTableHeader").outerHTML;
+      const htmlContent = `
+        <html>
+          <head>
+            <title>Size Calculator Results</title>
+            <style>
+              body { font-family: Arial, sans-serif; }
+              table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+              th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+              th { background-color: #f2f2f2; }
+            </style>
+          </head>
+          <body>
+            <h1>Size Calculator Results</h1>
+            ${tableHeader}
+            ${tableHTML}
+          </body>
+        </html>
+      `;
+      const blob = new Blob([htmlContent], { type: "text/html" });
       const link = document.createElement("a");
       link.href = URL.createObjectURL(blob);
-      link.download = "sizes.txt";
+      link.download = "sizes.html";
       link.click();
     }
 
     function printResults() {
+      const resultTable = document.getElementById("resultTable");
+      const tableHTML = resultTable.outerHTML;
+      const tableHeader = document.getElementById("resultTableHeader").outerHTML;
       const printWindow = window.open("", "", "width=800,height=600");
-      printWindow.document.write("<html><head><title>Print Results</title></head><body>");
-      printWindow.document.write("<h1>Size Calculator Results</h1>");
-      printWindow.document.write("<pre>" + results.join("\n") + "</pre>");
-      printWindow.document.write("</body></html>");
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Results</title>
+            <style>
+              body { font-family: Arial, sans-serif; }
+              table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+              th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+              th { background-color: #f2f2f2; }
+            </style>
+          </head>
+          <body>
+            <h1>Size Calculator Results</h1>
+            ${tableHeader}
+            ${tableHTML}
+          </body>
+        </html>
+      `);
       printWindow.document.close();
       printWindow.print();
     }
