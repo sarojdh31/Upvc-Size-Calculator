@@ -251,7 +251,7 @@
             const glassHeight = Math.round(sHeight - 90);
             addResult(`Entry ${index + 1} - Glass Size`, `${glassWidth} * ${glassHeight}; ${panels}ps`, panels);
           } else if (parseInt(panels) === 3) {
-            const sWidth = Math.round((pkjWidth - 10) / 3);
+            const sWidth = Math.round((pkjWidth / 3) + 17);
             const sHeight = Math.round(pkjHeight - 83);
             addResult(`Entry ${index + 1} - S`, `${sWidth}; 6w`, 6);
             addResult(`Entry ${index + 1} - S`, `${sHeight}; 6h`, 6);
