@@ -272,7 +272,7 @@
           addResult(`Entry ${index + 1} - Glass Size`, `${glassWidth} * ${glassHeight}; 1ps`, 1);
         } else if (category === "lubord") {
           const ztWidth1 = Math.round(pkjWidth - 44);
-          const ztWidth2 = Math.round(ztWidth1 + 75);
+          const ztWidth2 = Math.round(ztWidth1 + 70);
           const glassWidth = pkjWidth - 88;
           const glassHeight = pkjHeight - 88;
 
@@ -282,10 +282,10 @@
           addResult(`Entry ${index + 1} - Glass Size`, `${glassWidth} * ${glassHeight}; 1ps`, 1);
         } else if (category === "door") {
           const p60kWidth = pkjWidth;
-          const p60kHeight = pkjHeight;
+          const p60kHeight = pkjHeight-2;
           const nkmsWidth = p60kWidth - 60;
           const nkmsHeight = p60kHeight - 30;
-          const ztWidth1 = Math.round(nkmsWidth - 135);
+          const ztWidth1 = Math.round(nkmsWidth - 137);
           const ztWidth2 = Math.round(ztWidth1 + 70);
 
           addResult(`Entry ${index + 1} - P60k`, `${p60kWidth}; 1w`, 1);
